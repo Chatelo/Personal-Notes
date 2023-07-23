@@ -1,0 +1,17 @@
+{% extends "learning_logs/base.html" %}
+{% load bootstrap5 %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col">
+                <p>Add a new topic:</p>
+                <form action="{% url 'learning_logs:new_topic' %}" method="post">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    <button type="submit" class="btn btn-primary">Add Topic</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

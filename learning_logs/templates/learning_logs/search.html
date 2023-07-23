@@ -1,0 +1,26 @@
+{% extends "learning_logs/base.html" %}
+{% load bootstrap5 %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+    <h2>Search Results:</h2>
+    <p>Search Query: {{ form.cleaned_data.query }}</p>
+    <p>Results Count: {{ results|length }}</p>
+    <ul class="list-group">
+        {% for entry in results %}
+            {% if entry == text %}
+            <li class="list-group-item">
+                <a href="{% url 'learning_logs:entry_detail' entry.pk %}">{{ entry.text}}</a>
+            </li>
+            {% else %}
+            <li class="list-group-item">
+                <a href="{% url 'learning_logs:entry_detail' entry.pk %}">{{ entry.title}}</a>
+            </li>
+            {% endif %}
+
+        {% empty %}
+            <li class="list-group-item">No results found.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

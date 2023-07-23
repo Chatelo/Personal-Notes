@@ -1,0 +1,23 @@
+{% extends 'learning_logs/base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+<div class="container mt-5">
+    <p class="lead">Topic: {{ topic }}</p>
+    <p class="lead">Entries:</p>
+    <p>
+        <a class="btn-sm btn-primary" href="{% url 'learning_logs:new_entry' topic.id %}">Add a New Note</a>
+    </p>
+    <ul class="list-group ">
+        {% for entry in entries %}
+        <li class="list-group-item panel-heading">
+            <p><strong>{{ entry.title }}</strong> <a class="btn-sm btn-secondary" href="{% url 'learning_logs:edit_entry' entry.id %}">Edit Entry</a></p>
+            <p class="mb-1">Posted on: {{ entry.date_added|date:'M d, Y H:i' }}</p>
+            <p>{{ entry.text|linebreaks }}</p>
+            
+        </li>
+        {% empty %}
+        <li class="list-group-item">There are no entries for this topic yet.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock content %}

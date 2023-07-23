@@ -1,0 +1,7 @@
+{% extends "learning_logs/base.html" %}
+
+{% block content %}
+    <h2>{{ entry.title }}</h2> Posted on:{{ entry.date_added|date:'M d, Y H:i' }}
+    
+    <p>{{ entry.text }}</p>
+{% endblock %}
