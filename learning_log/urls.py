@@ -9,6 +9,7 @@ urlpatterns = [
     path('users/', include('users.urls', namespace='users')),
     path('', include('learning_logs.urls', namespace='learning_logs')),
 ]
-urlpatterns += static(static.MEDIA_URL, document_root = settings.MEDIA_ROOT) 
-urlpatterns += static(static.STATIC_URL, document_root = settings.STATIC_ROOT) 
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) 
+    urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT) 
 

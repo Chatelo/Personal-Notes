@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -14,7 +15,7 @@ SECRET_KEY = 'django-insecure-hsnk^0=jx#t)b_7#-916o-y+9s8quib5yjatfw1=0$^r(p3^-8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = ['.vercel.app','.now.sh','127.0.0.1','localhost']
 
 
 # Application definition
@@ -74,20 +75,26 @@ WSGI_APPLICATION = 'learning_log.wsgi.application'
 #     }
 # }
 
-DATABASES ={
-    'default':{
-        'PGDATABASE': 'railway',
-        'DATABASE_URL': 'postgresql://postgres:Sth2CNbpaf0sOBXLF03J@containers-us-west-52.railway.app:5839/railway',
-        'PGHOST': 'containers-us-west-52.railway.app',
-        'PGPASSWORD': 'Sth2CNbpaf0sOBXLF03J',
-        'ENGINE': 'django.db.backends.postgresql',
-        'PGPORT': '5839',
-        'PGUSER': 'postgres',
-        
-        
-    }
-
+DATABASES = {
+    'default': dj_database_url.config(
+        default='postgresql://postgres:Sth2CNbpaf0sOBXLF03J@containers-us-west-52.railway.app:5839/railway'
+    )
 }
+
+# DATABASES ={
+#     'default':{
+#         'PGDATABASE': 'railway',
+#         'DATABASE_URL': 'postgresql://postgres:Sth2CNbpaf0sOBXLF03J@containers-us-west-52.railway.app:5839/railway',
+#         'PGHOST': 'containers-us-west-52.railway.app',
+#         'PGPASSWORD': 'Sth2CNbpaf0sOBXLF03J',
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'PGPORT': '5839',
+#         'PGUSER': 'postgres',
+        
+        
+#     }
+
+# }
 
 
 # Password validation
@@ -124,10 +131,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / "static"]
-STATICFILES_DIRS = os.path.join(BASE_DIR, 'static')
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles_build', 'static')
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    os.path.join(BASE_DIR, 'static'),
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+
+
+#MEDIA
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
