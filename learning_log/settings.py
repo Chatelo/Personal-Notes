@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -13,7 +14,7 @@ SECRET_KEY = 'django-insecure-hsnk^0=jx#t)b_7#-916o-y+9s8quib5yjatfw1=0$^r(p3^-8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app']
 
 
 # Application definition
@@ -66,11 +67,26 @@ WSGI_APPLICATION = 'learning_log.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+DATABASES ={
+    'default':{
+        'PGDATABASE': 'railway',
+        'DATABASE_URL': 'postgresql://postgres:Sth2CNbpaf0sOBXLF03J@containers-us-west-52.railway.app:5839/railway',
+        'PGHOST': 'containers-us-west-52.railway.app',
+        'PGPASSWORD': 'Sth2CNbpaf0sOBXLF03J',
+        'ENGINE': 'django.db.backends.postgresql',
+        'PGPORT': '5839',
+        'PGUSER': 'postgres',
+        
+        
     }
+
 }
 
 
@@ -110,6 +126,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles_build', 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -123,3 +141,4 @@ LOGIN_URL = '/users/login/'
 BOOTSTRAP5 = {
 'include_jquery': True,
 }
+
