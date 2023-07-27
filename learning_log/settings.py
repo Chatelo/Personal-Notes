@@ -1,6 +1,5 @@
 from pathlib import Path
 import os
-import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -15,7 +14,7 @@ SECRET_KEY = 'django-insecure-hsnk^0=jx#t)b_7#-916o-y+9s8quib5yjatfw1=0$^r(p3^-8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app','.now.sh','127.0.0.1','localhost']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -68,33 +67,12 @@ WSGI_APPLICATION = 'learning_log.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
-    'default': dj_database_url.config(
-        default='postgresql://postgres:Sth2CNbpaf0sOBXLF03J@containers-us-west-52.railway.app:5839/railway'
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
-
-# DATABASES ={
-#     'default':{
-#         'PGDATABASE': 'railway',
-#         'DATABASE_URL': 'postgresql://postgres:Sth2CNbpaf0sOBXLF03J@containers-us-west-52.railway.app:5839/railway',
-#         'PGHOST': 'containers-us-west-52.railway.app',
-#         'PGPASSWORD': 'Sth2CNbpaf0sOBXLF03J',
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'PGPORT': '5839',
-#         'PGUSER': 'postgres',
-        
-        
-#     }
-
-# }
 
 
 # Password validation
